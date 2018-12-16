@@ -30,11 +30,14 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButton("Jump") && Time.time >= nextFire)
+        if (Input.GetButton("Fire1") || Input.GetKey(KeyCode.J))
         {
-            nextFire = Time.time + fireRate;
-            Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
-            this.asrc.Play();
+            if (Time.time >= nextFire)
+            {
+                nextFire = Time.time + fireRate;
+                Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+                this.asrc.Play();
+            }
         }
     }
 
