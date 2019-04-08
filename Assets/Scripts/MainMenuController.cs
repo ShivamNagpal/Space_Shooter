@@ -7,12 +7,12 @@ using UnityEngine.UI;
 
 public class MainMenuController : MonoBehaviour
 {
-    public AudioMixer MasterMixer;
     public Slider volumeSlider;
 
     private void Start()
     {
         float volume = PlayerPrefs.GetFloat(PreferenceConstants.PREFS_VOLUME_KEY, 1f);
+        AudioListener.volume = volume;
         volumeSlider.value = volume;
     }
 
@@ -28,8 +28,7 @@ public class MainMenuController : MonoBehaviour
 
     public void SetVolume(float volume)
     {
-        float dbVolume = Mathf.Log10(volume) * 20;
-        MasterMixer.SetFloat("MasterVolume", dbVolume);
+        AudioListener.volume = volume;
         PlayerPrefs.SetFloat(PreferenceConstants.PREFS_VOLUME_KEY, volume);
     }
 
