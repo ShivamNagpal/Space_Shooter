@@ -16,9 +16,28 @@ public class GameController : MonoBehaviour
     public Text scoreText;
     public Text restartText;
     public Text gameOverText;
+    public GameObject pauseMenu;
     private bool gameOver;
     private bool restart;
+    private static bool paused;
+    public static bool Paused
+    {
+        get
+        {
+            return paused;
+        }
+    }
     private int score;
+    public static GameController instance;
+
+    private void Awake()
+    {
+        if (GameController.instance == null)
+        {
+            GameController.instance = this;
+        }
+        Time.timeScale = 1;
+    }
 
     private void Start()
     {
@@ -26,7 +45,9 @@ public class GameController : MonoBehaviour
         UpdateScore();
         restartText.gameObject.SetActive(false);
         gameOverText.gameObject.SetActive(false);
+        pauseMenu.gameObject.SetActive(false);
         gameOver = false;
+        paused = false;
         restart = false;
 
         StartCoroutine(SpawnWaves());
@@ -41,6 +62,32 @@ public class GameController : MonoBehaviour
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (paused)
+            {
+                Resume();
+            }
+            else
+            {
+                Pause();
+            }
+        }
+    }
+
+    public static void Resume()
+    {
+        GameController.instance.pauseMenu.gameObject.SetActive(false);
+        Time.timeScale = 1;
+        paused = false;
+    }
+
+    public static void Pause()
+    {
+        Time.timeScale = 0;
+        GameController.instance.pauseMenu.gameObject.SetActive(true);
+        paused = true;
     }
 
     private IEnumerator SpawnWaves()

@@ -30,6 +30,11 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (GameController.Paused)
+        {
+            return;
+        }
+
         if (Input.GetButton("Fire1") || Input.GetKey(KeyCode.J))
         {
             if (Time.time >= nextFire)
