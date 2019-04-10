@@ -13,5 +13,6 @@ public class PauseMenuScript : MonoBehaviour
     public void MainMenu()
     {
         SceneManager.LoadScene(0);
+        GameController.Resume();
     }
 }

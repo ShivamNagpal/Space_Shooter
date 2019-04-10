@@ -36,7 +36,6 @@ public class GameController : MonoBehaviour
         {
             GameController.instance = this;
         }
-        Time.timeScale = 1;
     }
 
     private void Start()
