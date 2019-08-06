@@ -1,6 +1,6 @@
 # Space Shooter
 
-## [Checkout the game by clicking this link](https://shivamnagpal.github.io/SpaceShooter/)
+## [Checkout the game by clicking this link](https://shivamnagpal.itch.io/spaceshooter)
 
 * Use Left Ctrl or Left Mouse Key to Shoot
 
